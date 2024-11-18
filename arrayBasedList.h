@@ -138,7 +138,7 @@ void arrayBasedList<elemType>::print() const
 template <class elemType>
 void arrayBasedList<elemType>::insertAt(int loc, const elemType &item)
 {
-    if (isLessOrEqualThanZero(loc) || loc >length)
+    if (isLessOrEqualThanZero(loc) || loc > length)
         cerr << "Invalid location" << endl;
     else if (isFull())
         cerr << "Cannot insert into a full list" << endl;
@@ -183,7 +183,7 @@ void arrayBasedList<elemType>::retrieveAt(int loc, const elemType &item)
     if (loc > length || isLessOrEqualThanZero(loc))
         cerr << "Invalid location" << endl;
     else
-        return list[loc];
+        item = list[loc];
 }
 template <class elemType>
 void arrayBasedList<elemType>::replaceAt(int loc, const elemType &item)
@@ -209,5 +209,13 @@ void arrayBasedList<elemType>::insert(const elemType &item)
 template <class elemType>
 void arrayBasedList<elemType>::remove(const elemType &item)
 {
-    removeAt(seqSearch(item));
+    int index = seqSearch(item);
+    if (index != -1)
+    {
+        removeAt(index);
+    }
+    else
+    {
+        cerr << "Item not found" << endl;
+    }
 }
